@@ -1,4 +1,5 @@
-#### joe made this: https://goel.io/joe
+bin/*
+build/*
 
 #####=== OSX ===#####
 .DS_Store
