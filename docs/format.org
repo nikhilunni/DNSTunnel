@@ -1,0 +1,68 @@
+* Message
+** Header
+*** ID (16 bit)
+*** QR (1 bit)
+**** 0 for query, 1 for response
+*** OPCODE (4 bit)
+**** 0 for a standard query
+**** 1 for an inverse query
+**** 2 for a server status request
+**** 3-15 reserved
+*** AA (1 bit)
+**** Specifies that the responding name server is an authority for the domain name in question section
+*** TC (1 bit)
+**** Specifies that message was truncated due to length greater than that permitted on channel
+*** RD (1 bit)
+**** Set if we want a recursive search
+*** RA (1 bit)
+**** Set if recursive query support is available in the name server
+*** Z (3 bits)
+**** Reserved
+*** RCODE (4 bits)
+**** 0 if no error condition
+**** 1 if format error (name server unable to interpret query)
+**** 2 if server failure (name server has problem)
+**** 3 if domain name doesn't exist
+**** 4 if name server cannot support query
+**** 5 if refused by name server
+**** Response Code
+*** QDCOUNT (16 bits)
+**** Number of entries in question section
+*** ANCOUNT (16 bits)
+**** Number of entries in answer section
+*** NSCOUNT (16 bits)
+**** Number of name server resource records in the authorities section
+*** ARCOUNT (16 bits)
+**** Number of resource records in additional records section
+** Question
+*** QNAME (variable)
+**** Sequence of "labels", each label is:
+***** 1 byte of the number of bytes in the subdomain, followed by the subdomain
+***** 1 byte of 0x00 to end it
+*** QTYPE (16 bits)
+**** Check Type ID for each type
+*** QCLASS (16 bits)
+**** QCLASS is IN (0x0001) for the Internet
+** Answer
+*** [Variable list of resource records]
+** Authority
+*** [Variable list of resource records]
+** Additional
+*** [Variable list of resource records]
+
+
+
+* Resource Record
+** Name (16 bits)
+*** 2 bits of (0b11)
+*** 14 bits offset from START of message to domain name in question
+** Type (16 bits)
+   *** Specifies meaning of data in RData
+** Class (16 bits)
+*** Specifies class of data in Rdata
+** TTL (32 bit unsigned)
+*** Specifies time in seconds that resource record should be cached
+** RDLength (16 bit unsigned)
+*** Number of octets in RData field (up to )
+** RData
+*** The good shit
