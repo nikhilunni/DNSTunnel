@@ -1,3 +1,14 @@
+* UDP Header
+** Source Port (16 bits)
+** Destination Port (16 bits)
+** Message Length (16 bits)
+** Checksum (16 bits)
+*** Checksum is the 16-bit one's complement of the one's complement sum of a pseudo header of
+*** information from the IP header, the UDP header, and the data, padded with zero octets
+*** at the end (if necessary) to make a multiple of two octets.
+
+
+* DNS
 * Message
 ** Header
 *** ID (16 bit)
@@ -49,7 +60,6 @@
 *** [Variable list of resource records]
 ** Additional
 *** [Variable list of resource records]
-
 
 
 * Resource Record

@@ -3,42 +3,40 @@
 
 #include <boost/asio.hpp>
 #include <boost/array.hpp>
+#include <udp_server.h>
 
-using boost::asio::ip::udp;
+namespace dns_tunnel {
+namespace server {
 
 class Server {
  public:
-  static constexpr std::size_t kMaxBufferSize = 65535;
-
   explicit Server(int port);
   ~Server();
   void run();
 
  private:
-
-  void handle_request(const boost::system::error_code& error,
-		      std::size_t /*bytes_transferred*/);
-
   int listening_port;
-
   boost::asio::io_service io_service;
-  udp::socket udp_socket;
-  udp::endpoint remote_endpoint;
-  boost::array<char, kMaxBufferSize> recv_buffer;
+  std::unique_ptr<dns_tunnel::udp::UDPServer> udp_server;
 };
 
 inline Server::Server(int port) :
-	      listening_port(port),
-	      io_service(),
-	      udp_socket(this->io_service, udp::endpoint(udp::v4(), this->listening_port)) {
+    listening_port(port),
+    io_service(),
+    udp_server(new dns_tunnel::udp::UDPServer(this->listening_port, io_service)) {
   this->run();
   io_service.run();
+}
+
+inline void Server::run() {
+  udp_server->run();
 }
 
 inline Server::~Server() {
 
 }
 
-
+} // namespace server
+} // namespace dns_tunnel
 
 #endif // SERVER_SERVER_H_

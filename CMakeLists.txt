@@ -11,9 +11,11 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # Sources
-SET (SERVER_SOURCES src/main/server/main.cpp
+SET (SERVER_SOURCES src/main/common/constants.h
+		    src/main/server/main.cpp
     		    src/main/server/server.h
-    		    src/main/server/server.cpp)
+    		    src/main/server/udp_server.h
+    		    src/main/server/udp_server.cpp)
 
 # Target Definitions
 add_executable(server ${SERVER_SOURCES})

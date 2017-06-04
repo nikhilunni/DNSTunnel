@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-  Server server(5000);
+  dns_tunnel::server::Server server(5000);
   server.run();
 
   return 0;
