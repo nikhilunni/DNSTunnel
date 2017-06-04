@@ -17,7 +17,7 @@ class UDPServer {
   int listening_port;
   boost::asio::ip::udp::socket socket;
   boost::asio::ip::udp::endpoint endpoint;
-  boost::array<char, ::dns_tunnel::server::kMaxBufferSize> recv_buffer;
+  boost::array<char, ::dns_tunnel::udp::kMaxBufferSize> recv_buffer;
 
   void handle_request(const boost::system::error_code& error,
                       std::size_t /*bytes_transferred*/);

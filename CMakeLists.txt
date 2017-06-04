@@ -17,14 +17,24 @@ SET (SERVER_SOURCES src/main/common/constants.h
     		    src/main/server/udp_server.h
     		    src/main/server/udp_server.cpp)
 
+SET (CLIENT_SOURCES src/main/client/main.cpp
+    		    src/main/common/dns.h)
+
 # Target Definitions
 add_executable(server ${SERVER_SOURCES})
 target_compile_options(server PUBLIC -std=c++1y -Wall -Wfloat-conversion)
 target_include_directories(server PUBLIC src/main/server)
 
+add_executable(client ${CLIENT_SOURCES})
+target_compile_options(client PUBLIC -std=c++1y -Wall -Wfloat-conversion)
+target_include_directories(client PUBLIC src/main/client)
+
 # Dependencies
 find_package(Boost 1.64.0 REQUIRED filesystem system)
 target_link_libraries(server PUBLIC
+  ${Boost_LIBRARIES}
+)
+target_link_libraries(client PUBLIC
   ${Boost_LIBRARIES}
 )
 
