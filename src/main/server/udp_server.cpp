@@ -5,10 +5,10 @@
 #include <iostream>
 #include <iomanip>
 
-void dns_tunnel::udp::UDPServer::run() {
+void UDPServer::run() {
   socket.async_receive_from(boost::asio::buffer(recv_buffer),
                             endpoint,
-                            bind(&dns_tunnel::udp::UDPServer::handle_request,
+                            bind(&UDPServer::handle_request,
                                  this,
                                  boost::asio::placeholders::error,
                                  boost::asio::placeholders::bytes_transferred
@@ -17,7 +17,7 @@ void dns_tunnel::udp::UDPServer::run() {
 
 }
 
-void dns_tunnel::udp::UDPServer::handle_request(const boost::system::error_code& error, std::size_t bytes) {
+void UDPServer::handle_request(const boost::system::error_code& error, std::size_t bytes) {
   if (!error) {
     auto message(new std::string(recv_buffer.begin(), recv_buffer.begin() + bytes));
     for(std::string::iterator it = message->begin(); it != message->end(); ++it) {
