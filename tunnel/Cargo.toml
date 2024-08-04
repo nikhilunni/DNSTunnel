@@ -1,0 +1,15 @@
+[package]
+name = "tunnel"
+version = "0.1.0"
+edition = "2021"
+build = "build.rs"
+
+[build-dependencies]
+cc = "1.1.7"
+bindgen = "0.69.4"
+walkdir = "2.5.0"
+
+[dependencies]
+
+[target.'cfg(target_os = "macos")'.dependencies]
+mac_utun = "0.6.0"

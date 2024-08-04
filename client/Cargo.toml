@@ -1,0 +1,16 @@
+[package]
+name = "client"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { path = "../serde" }
+tunnel = { path = "../tunnel" }
+clap = { version = "4.5.13", features = ["derive"] }
+
+[dev-dependencies]
+regex = "1.10.6"
+
+[[bin]]
+name = "speed-test"
+path = "src/bin/speed_test.rs"
