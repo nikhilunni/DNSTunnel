@@ -10,6 +10,8 @@ bindgen = "0.69.4"
 walkdir = "2.5.0"
 
 [dependencies]
+nix = { version = "0.29.0", features = ["socket", "net"] }
+pcap = "2.0.0"
 
 [target.'cfg(target_os = "macos")'.dependencies]
 mac_utun = "0.6.0"
